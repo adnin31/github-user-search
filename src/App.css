@@ -1,3 +1,15 @@
+.container {
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search-container {
+  width: 33%;
+}
+
 .icon-container {
   height: 20px;
   width: 20px;
@@ -9,6 +21,7 @@
 
 .selected-user-copy {
   padding: 4px;
+  width: 33%;
 }
 
 .loading-container {
@@ -45,4 +58,5 @@
 
 .user-container {
   margin-top: 16px;
+  width: 33%;
 }

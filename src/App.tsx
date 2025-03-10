@@ -70,8 +70,8 @@ const GitHubSearch: React.FC = () => {
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <div className="flex gap-2 mb-2">
+    <div className="container">
+      <div className="flex gap-2 mb-2 search-container">
         <InputField
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -82,15 +82,15 @@ const GitHubSearch: React.FC = () => {
       {
         loading && (
           <div className="loading-container">
-             <img className="loading-image" src="/loading-animation.svg" alt="loading-animation" />
+             <img className="loading-image" src={`${process.env.PUBLIC_URL}/loading-animation.svg`} alt="loading-animation" />
           </div>
         )
       }
       {
-        users.length > 0 && <h3 className="selected-user-copy">Showing users for {query}</h3>
+        !loading && users.length > 0 && <h3 className="selected-user-copy">Showing users for {query}</h3>
       }
       {
-        users.length === 0 && (
+        !loading && users.length === 0 && (
           <p>Oops! We couldn't find anything matching your search</p>
         )
       }
@@ -99,7 +99,7 @@ const GitHubSearch: React.FC = () => {
           <div>
             <div key={user.id} className="flex justify-between border p-2 mb-2 cursor-pointer" onClick={() => fetchRepos(user.login)}>
               <h3>{user.login}</h3>
-              <img className={`icon-container  ${selectedUser && user.login === repos[0]?.owner.login && "rotate"}`} src="/images/arrow-down.svg" alt="dropdown-icon" />
+              <img className={`icon-container  ${selectedUser && user.login === repos[0]?.owner.login && "rotate"}`} src={`${process.env.PUBLIC_URL}/arrow-down.svg`} alt="dropdown-icon" />
             </div>
 
             {selectedUser && user.login === repos[0]?.owner.login && (
@@ -117,7 +117,7 @@ const GitHubSearch: React.FC = () => {
                           </p>
                         </div>
                         <div className="flex items-center">
-                          {repo.stargazers_count} <span><img className="star-image" src="/images/star.png" alt="star" /></span>
+                          {repo.stargazers_count} <span><img className="star-image" src={`${process.env.PUBLIC_URL}/star.png`} alt="star" /></span>
                         </div>
                       </div>
                     </li>
