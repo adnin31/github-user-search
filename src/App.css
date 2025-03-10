@@ -7,7 +7,11 @@
 }
 
 .search-container {
-  width: 33%;
+  @media(min-width: 768px) {
+    width: 33%;
+  }
+
+  width: 90vw;
 }
 
 .icon-container {
@@ -21,7 +25,11 @@
 
 .selected-user-copy {
   padding: 4px;
-  width: 33%;
+  width: 90vw;
+
+  @media(min-width: 768px) {
+    width: 33%;
+  }
 }
 
 .loading-container {
@@ -58,5 +66,9 @@
 
 .user-container {
   margin-top: 16px;
-  width: 33%;
+  width: 90vw;
+
+  @media(min-width: 768px) {
+    width: 33%;
+  }
 }
