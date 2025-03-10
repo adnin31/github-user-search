@@ -99,7 +99,7 @@ const GitHubSearch: React.FC = () => {
           <div>
             <div key={user.id} className="flex justify-between border p-2 mb-2 cursor-pointer" onClick={() => fetchRepos(user.login)}>
               <h3>{user.login}</h3>
-              <img className={`icon-container  ${selectedUser && user.login === repos[0]?.owner.login && "rotate"}`} src="/arrow-down.svg" alt="dropdown-icon" />
+              <img className={`icon-container  ${selectedUser && user.login === repos[0]?.owner.login && "rotate"}`} src="/images/arrow-down.svg" alt="dropdown-icon" />
             </div>
 
             {selectedUser && user.login === repos[0]?.owner.login && (
@@ -117,7 +117,7 @@ const GitHubSearch: React.FC = () => {
                           </p>
                         </div>
                         <div className="flex items-center">
-                          {repo.stargazers_count} <span><img className="star-image" src="/star.png" alt="star" /></span>
+                          {repo.stargazers_count} <span><img className="star-image" src="/images/star.png" alt="star" /></span>
                         </div>
                       </div>
                     </li>
