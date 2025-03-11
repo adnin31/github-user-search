@@ -1,0 +1,23 @@
+.list-container {
+    background-color: #E0E0E0;
+    margin-left: 15px;
+}
+
+.list-container {
+    background-color: #E0E0E0;
+    margin-left: 15px;
+}
+  
+.repo-container {
+    padding: 10px;
+}
+
+.star-image {
+    height: 16px;
+    margin-left: 4px;
+    width: 16px;
+}
+
+.repo-description-wrapper {
+    width: 75%;
+}

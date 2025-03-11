@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './App.css';
 
+import { Input, DropdownHeader, DropdwonList } from "./components";
+
 import axios from "axios";
 
 interface User {
@@ -14,22 +16,9 @@ interface Repo {
   name: string;
   html_url: string;
   stargazers_count: number;
-  description: number;
+  description: string;
   owner: User;
 }
-
-
-const InputField: React.FC<{ value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; placeholder: string }> = ({ value, onChange, placeholder }) => {
-  return (
-    <input
-      type="text"
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      className="border p-2 rounded w-full"
-    />
-  );
-};
 
 const GitHubSearch: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -72,7 +61,7 @@ const GitHubSearch: React.FC = () => {
   return (
     <div className="container">
       <div className="flex gap-2 mb-2 search-container">
-        <InputField
+        <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search GitHub users..."
@@ -97,32 +86,23 @@ const GitHubSearch: React.FC = () => {
       <div className="user-container">
         {users.map((user) => (
           <div>
-            <div key={user.id} className="flex justify-between border p-2 mb-2 cursor-pointer" onClick={() => fetchRepos(user.login)}>
-              <h3>{user.login}</h3>
-              <img className={`icon-container  ${selectedUser && user.login === repos[0]?.owner.login && "rotate"}`} src={`${process.env.PUBLIC_URL}/arrow-down.svg`} alt="dropdown-icon" />
-            </div>
+            <DropdownHeader
+              key={`${user.id}`}
+              title={user.login}
+              onClick={() => fetchRepos(user.login)}
+              isShowList={!!(selectedUser && user.login === repos[0]?.owner.login)}
+            />
 
             {selectedUser && user.login === repos[0]?.owner.login && (
               <div className="mt-4 mb-4">
-                <ul>
-                  {repos.map((repo) => (
-                    <li key={repo.id} className="mb-1 list-container">
-                      <div className="flex repo-container justify-between">
-                        <div className="repo-description-wrapper">
-                          <h3 className="text-lg font-bold">
-                            {repo.name}
-                          </h3>
-                          <p className="text-xs">
-                            {repo.description}
-                          </p>
-                        </div>
-                        <div className="flex items-center">
-                          {repo.stargazers_count} <span><img className="star-image" src={`${process.env.PUBLIC_URL}/star.png`} alt="star" /></span>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                {repos.map((repo) => (
+                  <DropdwonList 
+                    key={`${repo.id}`}
+                    title={repo.name}   
+                    description={repo.description}   
+                    stargazerCount={repo.stargazers_count}     
+                  />
+                ))}
               </div>
             )}
           </div>

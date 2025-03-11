@@ -7,11 +7,11 @@
 }
 
 .search-container {
+  width: 90vw;
+  
   @media(min-width: 768px) {
     width: 33%;
   }
-
-  width: 90vw;
 }
 
 .icon-container {
